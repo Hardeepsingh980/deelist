@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% if user.musiclibrary.playlists.all %}
+
+<ul class="collapsible">
+
+    {% for playlist in user.musiclibrary.playlists.all %}
+    <li class="active">
+        <div class="collapsible-header"><i class="material-icons">arrow_drop_down</i>{{playlist.name}}</div>
+        <div class="collapsible-body">
+            <a href="{% url 'add-song' playlist.id %}" class="waves-effect waves-light btn"><i
+                    class="material-icons left">add</i>Add Song to {{playlist.name}}</a>
+
+            {% if playlist.songs.all %}
+
+            <ul class="collection">
+                {% for song in playlist.songs.all %}
+                    <li class="collection-item">
+                        <h6>{{song.name}}</h6>
+                        <audio controls>
+                            <source src="{{song.music_url}}">
+                          </audio>
+                    </li>
+                {% endfor %}
+            </ul>
+
+
+            {% else %}
+            <h6>No Songs in playlist</h6>
+            {% endif %}
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+{% else %}
+<h4>No PlayLists. Create a playlist ...</h4>
+{% endif %}
+
+{% endblock %}
