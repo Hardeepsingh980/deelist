@@ -1,0 +1,11 @@
+crispy_forms
+crispy_forms_materialize
+django
+dj-database-url
+Django
+django-heroku
+gunicorn
+psycopg2
+pytz
+sqlparse
+whitenoise
